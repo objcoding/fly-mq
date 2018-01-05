@@ -14,7 +14,7 @@ public class Selector {
 
     private Logger logger = LoggerFactory.getLogger(Selector.class);
 
-    private Map<Class<?>, Object> classes = new HashMap<Class<?>, Object>();
+    private Map<Class<?>, Task> classes = new HashMap<Class<?>, Task>();
 
     private Map<Class<?>, Long> lastTimestamp = new HashMap<Class<?>, Long>();
 
@@ -26,7 +26,7 @@ public class Selector {
 
     public void start() throws Exception {
         while (true) {
-            for (Map.Entry<Class<?>, Object> taskClass : classes.entrySet()) {
+            for (Map.Entry<Class<?>, Task> taskClass : classes.entrySet()) {
                 try {
                     try {
 

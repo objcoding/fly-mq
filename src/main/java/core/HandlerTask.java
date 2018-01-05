@@ -26,6 +26,7 @@ public abstract class HandlerTask<T extends EventMessage> extends AbstractTask<T
         this.messageClass = messageClass;
     }
 
+    @Override
     public void success() {
         if (StringUtils.isNotBlank(message)) {
             setRedisTemplate.srem(RedisUtil.getSetKey(messageClass), message);
@@ -33,6 +34,7 @@ public abstract class HandlerTask<T extends EventMessage> extends AbstractTask<T
 
     }
 
+    @Override
     public void fail() {
         if (StringUtils.isNotBlank(message)) {
             listRedisTemplate.lpush(RedisUtil.getListKey(messageClass), message);
