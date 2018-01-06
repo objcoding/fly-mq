@@ -1,4 +1,4 @@
-package config;
+package cn.zhangchenghui.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;

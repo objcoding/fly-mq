@@ -1,12 +1,12 @@
-package core;
+package cn.zhangchenghui.core;
 
-import message.EventMessage;
+import cn.zhangchenghui.message.EventMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import template.ListRedisTemplate;
-import template.SetRedisTemplate;
-import utils.RedisUtil;
-import utils.SpringUtil;
+import cn.zhangchenghui.template.ListRedisTemplate;
+import cn.zhangchenghui.template.SetRedisTemplate;
+import cn.zhangchenghui.utils.RedisUtil;
+import cn.zhangchenghui.utils.SpringUtil;
 
 import java.util.Set;
 

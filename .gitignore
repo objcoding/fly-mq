@@ -1,5 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
-### Java template
+### Java cn.zhangchenghui.template
 # Compiled class file
 *.class
 
@@ -24,5 +24,7 @@
 hs_err_pid*
 
 /.idea
-/RedisMQ.iml
+/redis-mq.iml
 .DS_Store
+
+/target

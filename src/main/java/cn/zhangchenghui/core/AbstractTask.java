@@ -1,13 +1,13 @@
-package core;
+package cn.zhangchenghui.core;
 
 import com.alibaba.fastjson.JSON;
-import message.EventMessage;
+import cn.zhangchenghui.message.EventMessage;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import template.ListRedisTemplate;
-import utils.RedisUtil;
+import cn.zhangchenghui.template.ListRedisTemplate;
+import cn.zhangchenghui.utils.RedisUtil;
 
 import javax.annotation.Resource;
 
@@ -33,7 +33,7 @@ public abstract class AbstractTask<T extends EventMessage> implements Task {
     public Long obtainTask() {
         String message = listRedisTemplate.rpop(RedisUtil.getListKey(messageClass));
         this.message = message;
-        logger.info("execute message => " + message);
+        logger.info("execute cn.zhangchenghui.message => " + message);
         if (StringUtils.isNotBlank(message)) {
             T msg = (T) JSON.parseObject(message, messageClass);
             if (handle(msg)) {

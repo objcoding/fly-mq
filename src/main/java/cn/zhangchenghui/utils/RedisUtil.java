@@ -1,9 +1,9 @@
-package utils;
+package cn.zhangchenghui.utils;
 
 import com.alibaba.fastjson.JSON;
-import message.EventMessage;
-import template.ListRedisTemplate;
-import template.SetRedisTemplate;
+import cn.zhangchenghui.message.EventMessage;
+import cn.zhangchenghui.template.ListRedisTemplate;
+import cn.zhangchenghui.template.SetRedisTemplate;
 
 
 /**

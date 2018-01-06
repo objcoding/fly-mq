@@ -1,12 +1,12 @@
-package core;
+package cn.zhangchenghui.core;
 
-import message.EventMessage;
+import cn.zhangchenghui.message.EventMessage;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import template.SetRedisTemplate;
-import utils.RedisUtil;
+import cn.zhangchenghui.template.SetRedisTemplate;
+import cn.zhangchenghui.utils.RedisUtil;
 
 import javax.annotation.Resource;
 
@@ -38,7 +38,7 @@ public abstract class HandlerTask<T extends EventMessage> extends AbstractTask<T
     public void fail() {
         if (StringUtils.isNotBlank(message)) {
             listRedisTemplate.lpush(RedisUtil.getListKey(messageClass), message);
-            logger.error("队列消费失败 key:{}, message:{}", RedisUtil.getListKey(messageClass), message);
+            logger.error("队列消费失败 key:{}, cn.zhangchenghui.message:{}", RedisUtil.getListKey(messageClass), message);
         }
     }
 }

@@ -1,4 +1,4 @@
-package template;
+package cn.zhangchenghui.template;
 
 import org.springframework.data.redis.core.RedisTemplate;
 

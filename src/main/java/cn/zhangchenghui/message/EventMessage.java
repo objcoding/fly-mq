@@ -1,4 +1,4 @@
-package message;
+package cn.zhangchenghui.message;
 
 /**
  * 消息基类
