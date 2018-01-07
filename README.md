@@ -83,3 +83,18 @@ public static void run() {
   }
 }
 ```
+
+
+### 4.把消息推到队列中
+
+```java
+public void pushMessage(String messageJson, Long userId) {
+  
+  TestMessage testMessage = new TestMessage();
+  testMessage.setEvent("这是一个消息事件");
+  
+  RedisUtil.pushMessage(testMessage);
+    
+}
+```
+
