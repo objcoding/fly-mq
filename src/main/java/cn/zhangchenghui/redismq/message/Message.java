@@ -1,10 +1,10 @@
-package cn.zhangchenghui.message;
+package cn.zhangchenghui.redismq.message;
 
 /**
  * 消息基类
  *
  * Created by chenghui.zhang on 2018/1/5.
  */
-public interface EventMessage {
+public interface Message {
 
 }

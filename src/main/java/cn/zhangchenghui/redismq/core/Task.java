@@ -1,4 +1,4 @@
-package cn.zhangchenghui.core;
+package cn.zhangchenghui.redismq.core;
 
 /**
  * Created by chenghui.zhang on 2018/1/5.

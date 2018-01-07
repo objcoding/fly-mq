@@ -1,4 +1,4 @@
-package cn.zhangchenghui.core;
+package cn.zhangchenghui.redismq.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,23 +28,33 @@ public class Selector {
         return singleSelector;
     }
 
-    public <T extends Task> Selector addTask(Class<T> taskClass) throws Exception {
-        Task task;
-        try {
-            task = taskClass.newInstance();
-        } catch (InstantiationException ie) {
-            throw new InstantiationException(ie.getMessage());
-        } catch (IllegalAccessException ile) {
-            throw new IllegalAccessException(ile.getMessage());
+    public void addTask(Class<? extends Task>[] taskClasses) throws Exception {
+
+        if (null != taskClasses && taskClasses.length > 0) {
+
+            for (Class<? extends Task> taskClass : taskClasses) {
+
+                Task task;
+                try {
+                    task = taskClass.newInstance();
+                } catch (InstantiationException ie) {
+                    throw new InstantiationException(ie.getMessage());
+                } catch (IllegalAccessException ile) {
+                    throw new IllegalAccessException(ile.getMessage());
+                }
+
+                classes.put(taskClass, task);
+                lastTimestamp.put(taskClass, 0L);
+
+            }
         }
 
-        classes.put(taskClass, task);
-        lastTimestamp.put(taskClass, 0L);
-        return this;
     }
 
     public void start(Long delay) throws Exception {
+
         Long d = (null == delay || delay <= 0) ? 3000L : delay;
+
         while (true) {
             for (Map.Entry<Class<? extends Task>, Task> taskClass : classes.entrySet()) {
                 try {
