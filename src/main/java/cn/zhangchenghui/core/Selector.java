@@ -14,26 +14,44 @@ public class Selector {
 
     private Logger logger = LoggerFactory.getLogger(Selector.class);
 
-    private Map<Class<?>, Task> classes = new HashMap<Class<?>, Task>();
+    private Map<Class<? extends Task>, Task> classes = new HashMap<Class<? extends Task>, Task>();
 
-    private Map<Class<?>, Long> lastTimestamp = new HashMap<Class<?>, Long>();
+    private Map<Class<? extends Task>, Long> lastTimestamp = new HashMap<Class<? extends Task>, Long>();
 
-    public <T extends AbstractTask> Selector addTask(Class<T> taskClass, Task task) throws NoSuchMethodException {
+    private Selector() {
+
+    }
+
+    private final static Selector singleSelector = new Selector();
+    public static Selector newSelector() {
+        return singleSelector;
+    }
+
+    public <T extends Task> Selector addTask(Class<T> taskClass) throws Exception {
+        Task task;
+        try {
+            task = taskClass.newInstance();
+        } catch (InstantiationException ie) {
+            throw new InstantiationException(ie.getMessage());
+        } catch (IllegalAccessException ile) {
+            throw new IllegalAccessException(ile.getMessage());
+        }
+
         classes.put(taskClass, task);
         lastTimestamp.put(taskClass, 0L);
         return this;
     }
 
-    public void start() throws Exception {
+    public void start(Long delay) throws Exception {
+        Long d = (null == delay || delay <= 0) ? 3000L : delay;
         while (true) {
-            for (Map.Entry<Class<?>, Task> taskClass : classes.entrySet()) {
+            for (Map.Entry<Class<? extends Task>, Task> taskClass : classes.entrySet()) {
                 try {
                     try {
 
                         Method method = taskClass.getKey().getMethod(Task.DO_METHOD);
 
-                        long delay = 3000;
-                        if (System.currentTimeMillis() - lastTimestamp.get(taskClass.getKey()) >= delay) {
+                        if (System.currentTimeMillis() - lastTimestamp.get(taskClass.getKey()) >= d) {
                             Long time = (Long) method.invoke(taskClass.getValue());
                             lastTimestamp.put(taskClass.getKey(), time);
                         }
