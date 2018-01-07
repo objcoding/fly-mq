@@ -23,6 +23,7 @@ public class Selector {
     }
 
     private final static Selector singleSelector = new Selector();
+
     public static Selector newSelector() {
         return singleSelector;
     }
