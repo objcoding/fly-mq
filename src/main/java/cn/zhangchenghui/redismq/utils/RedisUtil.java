@@ -11,6 +11,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by chenghui.zhang on 2018/1/7.
@@ -93,6 +94,47 @@ public class RedisUtil {
                 jedis.close();
             }
         }
+    }
+
+    /**
+     * 重新加载事件队列
+     *
+     * @param messageClasses 消息类
+     */
+    public static void reloadMessage(Class<? extends Message>[] messageClasses) {
+
+        Jedis jedis = null;
+
+        try {
+
+            jedis = getConnect();
+
+            for (Class<? extends Message> messageClass : messageClasses) {
+                jedis.del(getListKey(messageClass));
+
+                // 删除list key，加载set到list
+                try {
+                    if (jedis.exists(getSetKey(messageClass))) {
+                        Set<String> eventSet = jedis.smembers(getSetKey(messageClass));
+                        if (null != eventSet && eventSet.size() > 0) {
+                            for (String message : eventSet) {
+                                jedis.lpush(getListKey(messageClass), message);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    logger.error("重新加载事件队列失败 >>>> " + e.getMessage());
+                }
+            }
+
+        } catch (Exception e) {
+            logger.error("redis连接失败 >>> " + e.getMessage());
+        } finally {
+            if (null != jedis) {
+                jedis.close();
+            }
+        }
+
     }
 
     // list key
