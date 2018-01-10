@@ -2,6 +2,7 @@ package cn.zhangchenghui.redismq.core;
 
 import cn.zhangchenghui.redismq.message.Message;
 import cn.zhangchenghui.redismq.utils.AsyncUtil;
+import cn.zhangchenghui.redismq.utils.HandlerUtil;
 import cn.zhangchenghui.redismq.utils.RedisUtil;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang.StringUtils;
@@ -30,7 +31,7 @@ public abstract class AbstractTask<T extends Message> implements Task {
 
             jedis = RedisUtil.getConnect();
 
-            String message = jedis.rpop(RedisUtil.getListKey(messageClass));
+            String message = jedis.rpop(HandlerUtil.getListKey(messageClass));
             this.message = message;
             logger.info("execute cn.zhangchenghui.redismq.message => " + message);
             if (StringUtils.isNotBlank(message)) {

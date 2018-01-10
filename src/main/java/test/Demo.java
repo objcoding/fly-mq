@@ -2,6 +2,7 @@ package test;
 
 import cn.zhangchenghui.redismq.config.RedisConfig;
 import cn.zhangchenghui.redismq.core.Selector;
+import cn.zhangchenghui.redismq.utils.HandlerUtil;
 import cn.zhangchenghui.redismq.utils.RedisUtil;
 
 /**
@@ -27,7 +28,7 @@ public class Demo {
         Class[] eventMessages = {
                 TestMessage.class
         };
-        RedisUtil.reloadMessage(eventMessages);
+        HandlerUtil.reloadMessage(eventMessages);
 
         Selector selector = Selector.newSelector();
         try {

@@ -1,6 +1,7 @@
 package cn.zhangchenghui.redismq.core;
 
 import cn.zhangchenghui.redismq.message.Message;
+import cn.zhangchenghui.redismq.utils.HandlerUtil;
 import cn.zhangchenghui.redismq.utils.RedisUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public abstract class HandlerTask<T extends Message> extends AbstractTask<T> {
             Jedis jedis = null;
             try {
                 jedis = RedisUtil.getConnect();
-                jedis.srem(RedisUtil.getSetKey(messageClass), message);
+                jedis.srem(HandlerUtil.getSetKey(messageClass), message);
             } catch (Exception e) {
                 logger.error("卸载消息势失败 >>> " + e.getMessage() + "  消息：" + message);
             } finally {
@@ -43,7 +44,7 @@ public abstract class HandlerTask<T extends Message> extends AbstractTask<T> {
             Jedis jedis = null;
             try {
                 jedis = RedisUtil.getConnect();
-                jedis.lpush(RedisUtil.getListKey(messageClass), message);
+                jedis.lpush(HandlerUtil.getListKey(messageClass), message);
             } catch (Exception e) {
                 logger.error("队列消费失败 >>> " + e.getMessage() + "  消息：" + message);
             } finally {
