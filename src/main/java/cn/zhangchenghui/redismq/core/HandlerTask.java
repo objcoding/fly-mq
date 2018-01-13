@@ -28,7 +28,7 @@ public abstract class HandlerTask<T extends Message> extends AbstractTask<T> {
                 jedis = RedisUtil.getConnect();
                 jedis.srem(HandlerUtil.getSetKey(messageClass), message);
             } catch (Exception e) {
-                logger.error("卸载消息势失败 >>> " + e.getMessage() + "  消息：" + message);
+                logger.error("卸载消息势失败 >>> {}  消息: {}", e.getMessage(), message);
             } finally {
                 if (null != jedis) {
                     jedis.close();
@@ -46,7 +46,7 @@ public abstract class HandlerTask<T extends Message> extends AbstractTask<T> {
                 jedis = RedisUtil.getConnect();
                 jedis.lpush(HandlerUtil.getListKey(messageClass), message);
             } catch (Exception e) {
-                logger.error("队列消费失败 >>> " + e.getMessage() + "  消息：" + message);
+                logger.error("队列消费失败 >>> {}  消息: {}", e.getMessage(), message);
             } finally {
                 if (null != jedis) {
                     jedis.close();
