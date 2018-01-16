@@ -1,6 +1,7 @@
 package cn.zhangchenghui.redismq.core;
 
 import cn.zhangchenghui.redismq.message.Message;
+import cn.zhangchenghui.redismq.utils.AsyncUtil;
 import cn.zhangchenghui.redismq.utils.HandlerUtil;
 import cn.zhangchenghui.redismq.utils.RedisUtil;
 import com.alibaba.fastjson.JSON;
@@ -36,11 +37,13 @@ public abstract class AbstractTask<T extends Message> implements Task {
             if (StringUtils.isNotBlank(message)) {
                 T msg = (T) JSON.parseObject(message, messageClass);
 
+                AsyncUtil.submit(() -> {
                     if (handle(msg)) {
                         success();
                     } else {
                         fail();
                     }
+                });
 
                 return 0L;
 
