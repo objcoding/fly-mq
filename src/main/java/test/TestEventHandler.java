@@ -1,6 +1,6 @@
 package test;
 
-import cn.zhangchenghui.redismq.core.HandlerTask;
+import cn.zhangchenghui.flymq.core.HandlerTask;
 
 /**
  * Created by chenghui.zhang on 2018/1/7.

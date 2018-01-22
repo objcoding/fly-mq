@@ -1,6 +1,6 @@
-package cn.zhangchenghui.redismq.utils;
+package cn.zhangchenghui.flymq.utils;
 
-import cn.zhangchenghui.redismq.message.Message;
+import cn.zhangchenghui.flymq.message.Message;
 import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

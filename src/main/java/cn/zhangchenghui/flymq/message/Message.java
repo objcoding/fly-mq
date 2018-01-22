@@ -1,4 +1,4 @@
-package cn.zhangchenghui.redismq.message;
+package cn.zhangchenghui.flymq.message;
 
 /**
  * 消息基类

@@ -24,7 +24,7 @@
 hs_err_pid*
 
 /.idea
-/redis-mq.iml
+/fly-mq.iml
 .DS_Store
 
 /target

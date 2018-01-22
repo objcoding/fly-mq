@@ -1,9 +1,9 @@
 package test;
 
-import cn.zhangchenghui.redismq.config.RedisConfig;
-import cn.zhangchenghui.redismq.core.Selector;
-import cn.zhangchenghui.redismq.utils.HandlerUtil;
-import cn.zhangchenghui.redismq.utils.RedisUtil;
+import cn.zhangchenghui.flymq.config.RedisConfig;
+import cn.zhangchenghui.flymq.core.Selector;
+import cn.zhangchenghui.flymq.utils.HandlerUtil;
+import cn.zhangchenghui.flymq.utils.RedisUtil;
 
 /**
  * Created by chenghui.zhang on 2018/1/7.

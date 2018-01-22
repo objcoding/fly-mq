@@ -1,4 +1,4 @@
-package cn.zhangchenghui.redismq.utils;
+package cn.zhangchenghui.flymq.utils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

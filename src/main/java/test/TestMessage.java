@@ -1,6 +1,6 @@
 package test;
 
-import cn.zhangchenghui.redismq.message.Message;
+import cn.zhangchenghui.flymq.message.Message;
 
 /**
  * Created by chenghui.zhang on 2018/1/7.

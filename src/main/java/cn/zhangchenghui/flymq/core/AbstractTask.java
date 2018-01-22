@@ -1,9 +1,9 @@
-package cn.zhangchenghui.redismq.core;
+package cn.zhangchenghui.flymq.core;
 
-import cn.zhangchenghui.redismq.message.Message;
-import cn.zhangchenghui.redismq.utils.AsyncUtil;
-import cn.zhangchenghui.redismq.utils.HandlerUtil;
-import cn.zhangchenghui.redismq.utils.RedisUtil;
+import cn.zhangchenghui.flymq.message.Message;
+import cn.zhangchenghui.flymq.utils.AsyncUtil;
+import cn.zhangchenghui.flymq.utils.HandlerUtil;
+import cn.zhangchenghui.flymq.utils.RedisUtil;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public abstract class AbstractTask<T extends Message> implements Task {
 
             String message = jedis.rpop(HandlerUtil.getListKey(messageClass));
             this.message = message;
-            logger.info("execute cn.zhangchenghui.redismq.message => " + message);
+            logger.info("execute cn.zhangchenghui.flymq.message => " + message);
             if (StringUtils.isNotBlank(message)) {
                 T msg = (T) JSON.parseObject(message, messageClass);
 
