@@ -1,4 +1,4 @@
-package cn.zhangchenghui.flymq.config;
+package com.objcoding.flymq.config;
 
 /**
  * redis配置类

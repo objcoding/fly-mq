@@ -1,4 +1,4 @@
-package cn.zhangchenghui.flymq.core;
+package com.objcoding.flymq.core;
 
 /**
  * Created by chenghui.zhang on 2018/1/5.

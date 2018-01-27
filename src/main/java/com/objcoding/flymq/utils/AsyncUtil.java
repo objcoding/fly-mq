@@ -1,4 +1,4 @@
-package cn.zhangchenghui.flymq.utils;
+package com.objcoding.flymq.utils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

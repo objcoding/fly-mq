@@ -1,8 +1,8 @@
-package cn.zhangchenghui.flymq.core;
+package com.objcoding.flymq.core;
 
-import cn.zhangchenghui.flymq.message.Message;
-import cn.zhangchenghui.flymq.utils.HandlerUtil;
-import cn.zhangchenghui.flymq.utils.RedisUtil;
+import com.objcoding.flymq.message.Message;
+import com.objcoding.flymq.utils.HandlerUtil;
+import com.objcoding.flymq.utils.RedisUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

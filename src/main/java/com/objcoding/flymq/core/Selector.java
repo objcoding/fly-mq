@@ -1,4 +1,4 @@
-package cn.zhangchenghui.flymq.core;
+package com.objcoding.flymq.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

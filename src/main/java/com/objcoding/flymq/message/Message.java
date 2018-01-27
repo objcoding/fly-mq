@@ -1,4 +1,4 @@
-package cn.zhangchenghui.flymq.message;
+package com.objcoding.flymq.message;
 
 /**
  * 消息基类

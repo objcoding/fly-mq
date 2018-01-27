@@ -1,7 +1,6 @@
-package cn.zhangchenghui.flymq.utils;
+package com.objcoding.flymq.utils;
 
-import cn.zhangchenghui.flymq.config.RedisConfig;
-import com.alibaba.fastjson.JSON;
+import com.objcoding.flymq.config.RedisConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
