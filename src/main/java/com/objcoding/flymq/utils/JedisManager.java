@@ -13,15 +13,15 @@ import java.util.Map;
 /**
  * Created by chenghui.zhang on 2018/1/7.
  */
-public class RedisUtil {
+public class JedisManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(RedisUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(JedisManager.class);
 
     private static Map<String, JedisPool> maps = new HashMap<>();
 
     private static JedisPool JEDISPOOL;
 
-    private RedisUtil() {
+    private JedisManager() {
 
     }
 
@@ -50,7 +50,7 @@ public class RedisUtil {
         } else {
             pool = maps.get(key);
         }
-        RedisUtil.JEDISPOOL = pool;
+        JedisManager.JEDISPOOL = pool;
     }
 
     /**

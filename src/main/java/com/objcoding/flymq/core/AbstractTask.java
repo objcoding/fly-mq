@@ -3,7 +3,7 @@ package com.objcoding.flymq.core;
 import com.objcoding.flymq.message.Message;
 import com.objcoding.flymq.utils.AsyncUtil;
 import com.objcoding.flymq.utils.HandlerUtil;
-import com.objcoding.flymq.utils.RedisUtil;
+import com.objcoding.flymq.utils.JedisManager;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -29,11 +29,12 @@ public abstract class AbstractTask<T extends Message> implements Task {
         Jedis jedis = null;
         try {
 
-            jedis = RedisUtil.getConnect();
+            jedis = JedisManager.getConnect();
 
             String message = jedis.rpop(HandlerUtil.getListKey(messageClass));
             this.message = message;
-            logger.info("execute com.objcoding.flymq.message => " + message);
+//            logger.info("execute com.objcoding.flymq.message => {}", message);
+            System.out.println("execute com.objcoding.flymq.message => " + message);
             if (StringUtils.isNotBlank(message)) {
                 T msg = (T) JSON.parseObject(message, messageClass);
 

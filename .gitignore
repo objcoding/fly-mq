@@ -24,7 +24,7 @@
 hs_err_pid*
 
 /.idea
-/fly-mq.iml
+/*.iml
 .DS_Store
 
 /target

@@ -2,7 +2,7 @@ package com.objcoding.flymq.core;
 
 import com.objcoding.flymq.message.Message;
 import com.objcoding.flymq.utils.HandlerUtil;
-import com.objcoding.flymq.utils.RedisUtil;
+import com.objcoding.flymq.utils.JedisManager;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ public abstract class HandlerTask<T extends Message> extends AbstractTask<T> {
         if (StringUtils.isNotBlank(message)) {
             Jedis jedis = null;
             try {
-                jedis = RedisUtil.getConnect();
+                jedis = JedisManager.getConnect();
                 jedis.srem(HandlerUtil.getSetKey(messageClass), message);
             } catch (Exception e) {
                 logger.error("卸载消息势失败 >>> {}  消息: {}", e.getMessage(), message);
@@ -43,7 +43,7 @@ public abstract class HandlerTask<T extends Message> extends AbstractTask<T> {
         if (StringUtils.isNotBlank(message)) {
             Jedis jedis = null;
             try {
-                jedis = RedisUtil.getConnect();
+                jedis = JedisManager.getConnect();
                 jedis.lpush(HandlerUtil.getListKey(messageClass), message);
             } catch (Exception e) {
                 logger.error("队列消费失败 >>> {}  消息: {}", e.getMessage(), message);

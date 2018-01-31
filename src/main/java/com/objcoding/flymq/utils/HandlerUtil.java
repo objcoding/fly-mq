@@ -24,7 +24,7 @@ public class HandlerUtil {
         String jsonStr = JSON.toJSONString(message);
         Jedis jedis = null;
         try {
-            jedis = RedisUtil.getConnect();
+            jedis = JedisManager.getConnect();
             jedis.lpush(message.getClass().getName().concat(".list"), jsonStr);
             jedis.sadd(message.getClass().getName().concat(".set"), jsonStr);
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class HandlerUtil {
 
         try {
 
-            jedis = RedisUtil.getConnect();
+            jedis = JedisManager.getConnect();
 
             for (Class<? extends Message> messageClass : messageClasses) {
                 jedis.del(getListKey(messageClass));

@@ -63,6 +63,7 @@ public class Selector {
                         Method method = taskClass.getKey().getMethod(Task.DO_METHOD);
 
                         if (System.currentTimeMillis() - lastTimestamp.get(taskClass.getKey()) >= d) {
+                            System.out.println("fly-mq 正在执行 ==> " + taskClass.getKey().getName());
                             Long time = (Long) method.invoke(taskClass.getValue());
                             lastTimestamp.put(taskClass.getKey(), time);
                         }
