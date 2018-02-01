@@ -46,7 +46,7 @@
 
         <resources>
             <resource>
-                <directory>project/src/main/resources</directory>
+                <directory>src/main/resources</directory>
                 <includes>
                     <include>**.*</include>
                     <include>**</include>
